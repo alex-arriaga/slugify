@@ -5,6 +5,7 @@
 # ----- Project ignores
 
 .idea
+node_modules
 
 
 
