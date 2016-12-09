@@ -2,7 +2,7 @@
 
 ## Summary
 
-Slugs are usually a URL friendly version of a content title 
+Slugs are usually a URL friendly version of a content title. 
 Slugs are meant to be used with permalinks as they help describe 
 what the content at the URL is.
 

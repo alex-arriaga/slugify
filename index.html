@@ -33,6 +33,11 @@
                             <p>This application allows to create slugs that can be copied and pasted in
                                 your favorite Content Management System when creating content.</p>
                         </div>
+                        <div class="alert alert-success">
+                            <p>Slugs are usually a URL friendly version of a content title.
+                                Slugs are meant to be used with permalinks as they help describe
+                                what the content at the URL is. e. g. instead of </p>
+                        </div>
                         <form>
                             <div class="form-group">
                                 <label for="inputString">Your string</label>
@@ -60,7 +65,7 @@
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="dist/all.min.js"></script>
         <script>
-            (function ($, undefined) {
+            (function ($, Slugify, undefined) {
                 var $input = $("#inputString");
                 var $output = $("#slug");
                 var $createSlugBtn = $("#createSlugBtn");
@@ -68,7 +73,7 @@
 
                 function onClickCreateSlug() {
                     var inputString = $input.val();
-                    var slug = slugify.createSlug(inputString);
+                    var slug = Slugify.createSlug(inputString);
                     if (slug !== "") {
                         $output.val(slug);
                         $createSlugBtn.prop('disabled', false);
@@ -99,7 +104,7 @@
 
                 $input.on('keyup', onKeyUp);
 
-            })(jQuery);
+            })(jQuery, window.Slugify);
         </script>
 
     </body>

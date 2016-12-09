@@ -1,5 +1,5 @@
 (function () {
-    var slugify = (function () {
+    var Slugify = (function () {
 
         // Based on from http://dense13.com/blog/2009/05/03/converting-string-to-slug-javascript/
         function createSlug(str) {
@@ -25,7 +25,7 @@
         }
     })();
 
-    if (typeof window.slugify === "undefined") {
-        window.slugify = slugify;
+    if (typeof window.Slugify === "undefined") {
+        window.Slugify = Slugify;
     }
 })();
