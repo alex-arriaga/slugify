@@ -4,13 +4,15 @@
   "description": "This application allows to create slugs that can be copied and pasted in your favorite Content Management System when creating content.",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp",
+    "start": "npm run build && live-server ./ --entry-file=index.html"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alex-arriaga/slugify.git"
   },
-  "author": "Alex Arriaga <alex@base22.com> (http://www.alex-arriaga.com/)",
+  "author": "Alex Arriaga <alex.arriaga@webtraining.world> (http://www.alex-arriaga.com/)",
   "license": "MIT",
   "private": false,
   "bugs": {
@@ -22,6 +24,7 @@
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-uglify": "^2.0.0",
+    "live-server": "^1.2.1",
     "pump": "^1.0.1"
   }
 }

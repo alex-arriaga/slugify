@@ -1,112 +1,158 @@
 <!doctype html>
 <html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Slugify</title>
-        <meta name="description"
-              content="This application allows to create slugs that can be copied and pasted in your favorite Content Management System when creating content.">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-              crossorigin="anonymous">
-    </head>
-    <style>
-        .margin-top-lg {
-            margin-top: 40px;
-        }
-    </style>
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="margin-top-lg">
-                        <!--[if lt IE 8]>
-                        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a
-                                href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-                        <![endif]-->
-                        <h1>
-                            Slugify
-                        </h1>
-                        <div class="alert alert-info">
-                            <p>This application allows to create slugs that can be copied and pasted in
-                                your favorite Content Management System when creating content.</p>
-                        </div>
-                        <div class="alert alert-success">
-                            <p>Slugs are usually a URL friendly version of a content title.
-                                Slugs are meant to be used with permalinks as they help describe
-                                what the content at the URL is. e. g. instead of using <em>"Learning Functional Programming
-                                with JavaScript"</em> you should use <em>"learning-functional-programming-with-javascript"</em>.</p>
-                        </div>
-                        <form>
-                            <div class="form-group">
-                                <label for="inputString">Your string</label>
-                                <input type="text" class="form-control" id="inputString"
-                                       placeholder="Paste your string">
-                            </div>
-                            <div class="form-group">
-                                <label for="slug">Slug</label>
-                                <input type="text" class="form-control" id="slug"
-                                       placeholder="Slug">
-                            </div>
-                            <!--<a id="createSlugBtn" class="btn btn-primary" href="#">Create</a>-->
-                            <button id="copySlugBtn" class="btn btn-success" href="#"
-                                    data-clipboard-action="copy"
-                                    data-clipboard-target="#slug">
-                                <span class="glyphicon glyphicon-copy"></span>
-                                <span>&nbsp;Copy to clipboard</span></button>
-                        </form>
-
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Slugify</title>
+    <meta name="description"
+          content="This application allows to create slugs that can be copied and pasted in your favorite Content Management System when creating content.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<style>
+    .margin-top-lg {
+        margin-top: 40px;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="margin-top-lg">
+                    <!--[if lt IE 8]>
+                    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a
+                            href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+                    <![endif]-->
+                    <h1>
+                        Slugify
+                    </h1>
+                    <div class="alert alert-info">
+                        <p>This application allows to create slugs that can be copied and pasted in
+                            your favorite Content Management System when creating content.</p>
                     </div>
+                    <div class="alert alert-success">
+                        <p>Slugs are usually a URL friendly version of a content title.
+                            Slugs are meant to be used with permalinks as they help describe
+                            what the content at the URL is. e. g. instead of using <em>"Learning Functional Programming
+                                with JavaScript"</em> you should use <em>"learning-functional-programming-with-javascript"</em>.
+                        </p>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="inputString">Your string</label>
+                            <input type="text" class="form-control" id="inputString"
+                                   placeholder="Paste your string">
+                        </div>
+                        <div class="form-group">
+                            <label for="slug">Slug</label>
+                            <input type="text" class="form-control" id="slug"
+                                   placeholder="Slug">
+                        </div>
+                        <!--<a id="createSlugBtn" class="btn btn-primary" href="#">Create</a>-->
+                        <button id="copySlugBtn" class="btn btn-success" href="#"
+                                data-clipboard-action="copy"
+                                data-clipboard-target="#slug">
+                            <span class="glyphicon glyphicon-copy"></span>
+                            <span>&nbsp;Copy to clipboard</span></button>
+                    </form>
+
                 </div>
             </div>
         </div>
 
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script src="dist/all.min.js"></script>
-        <script>
-            (function ($, Slugify, undefined) {
-                var $input = $("#inputString");
-                var $output = $("#slug");
-                var $createSlugBtn = $("#createSlugBtn");
-                var clipboard = new Clipboard('#copySlugBtn');
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <article class="markdown-body entry-content p-5" itemprop="text">
 
-                function onClickCreateSlug() {
-                    var inputString = $input.val();
-                    var slug = Slugify.createSlug(inputString);
-                    if (slug !== "") {
-                        $output.val(slug);
-                        $createSlugBtn.prop('disabled', false);
-                    } else {
-                        $createSlugBtn.prop('disabled', true);
-                    }
-                }
+                    <h3>Example of slugs</h3>
 
-                clipboard.on('success', function (e) {
-                    console.info('Action:', e.action);
-                    console.info('Text:', e.text);
-                    console.info('Trigger:', e.trigger);
+                    <p>Imagine instead of using these kinds of URLs (which are not that good, right?)</p>
+                    <pre><code>http://www.alex-arriaga.com/posts/24
+</code></pre>
+                    <p>You could use:</p>
+                    <pre><code>http://www.alex-arriaga.com/learning-functional-programming-with-javascript-jsunconf-2016/
+</code></pre>
+                    <div class="margin-top-lg">
+                        <h3>About me</h3>
+                        <p>I am curious person, I am always eager to learn how to improve what I do.</p>
+                        <p>I love computer sciences and consider myself passionate about research and
+                            its application to any aspect of life.</p>
+                        <p>I am proud to be Mexican because I love Mexico's prehispanic cultures. In my spare time, I
+                            impart
+                            workshops
+                            by streaming for the developer community from throughout Latin America and I read scientific
+                            articles
+                            about computer sciences and its application to Medicine and Biology.</p>
+                        <h3>Other projects</h3>
+                        <p><a href="https://webtraining.zone" target="_blank">Webtraining.Zone</a> An e-learning
+                            platform
+                            focused
+                            on web technologies, IT projects and innovation.</p>
+                        <p><a href="https://www.alex-arriaga.com/" target="_blank">Alex-Arriaga.com</a> My technology
+                            oriented
+                            blog, where I usually publish solutions to hard problems and share my opinion regarding web
+                            and
+                            tech.</p>
+                        <p><a href="http://cabezasdeleon.com" target="_blank">CabezasDeLeon.com</a> My wife's blog (in
+                            Spanish)
+                            with many topics related to culture, lifestyle, and self-growth.</p>
+                        <p><a href="https://www.youtube.com/AlexArriaga/" target="_blank">Youtube Channel</a> My
+                            personal
+                            Youtube
+                            channel where I share knowledge.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
 
-                    e.clearSelection();
-                });
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="dist/all.min.js"></script>
+    <script>
+      (function($, Slugify, undefined) {
+        var $input = $('#inputString');
+        var $output = $('#slug');
+        var $createSlugBtn = $('#createSlugBtn');
+        var clipboard = new Clipboard('#copySlugBtn');
 
-                clipboard.on('error', function (e) {
-                    console.error('Action:', e.action);
-                    console.error('Trigger:', e.trigger);
-                });
+        function onClickCreateSlug() {
+          var inputString = $input.val();
+          var slug = Slugify.createSlug(inputString);
+          if (slug !== '') {
+            $output.val(slug);
+            $createSlugBtn.prop('disabled', false);
+          } else {
+            $createSlugBtn.prop('disabled', true);
+          }
+        }
 
-                function onKeyUp() {
-                    onClickCreateSlug();
-                }
+        clipboard.on('success', function(e) {
+          console.info('Action:', e.action);
+          console.info('Text:', e.text);
+          console.info('Trigger:', e.trigger);
 
-                // Events
-                $createSlugBtn.on('click', onClickCreateSlug);
+          e.clearSelection();
+        });
 
-                $input.on('keyup', onKeyUp);
+        clipboard.on('error', function(e) {
+          console.error('Action:', e.action);
+          console.error('Trigger:', e.trigger);
+        });
 
-            })(jQuery, window.Slugify);
-        </script>
+        function onKeyUp() {
+          onClickCreateSlug();
+        }
 
-    </body>
+        // Events
+        $createSlugBtn.on('click', onClickCreateSlug);
+
+        $input.on('keyup', onKeyUp);
+
+      })(jQuery, window.Slugify);
+    </script>
+
+</body>
 </html>
