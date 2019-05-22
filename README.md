@@ -1,5 +1,7 @@
 # Slugify
 
+Demo: [https://alex-arriaga.com/slugify/](https://alex-arriaga.com/slugify/).
+
 ## Summary
 
 Slugs are usually a URL friendly version of a content title. 
